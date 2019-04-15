@@ -6,11 +6,11 @@
 #
 Name     : libkdcraw
 Version  : 18.12.3
-Release  : 3
+Release  : 4
 URL      : https://download.kde.org/stable/applications/18.12.3/src/libkdcraw-18.12.3.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.12.3/src/libkdcraw-18.12.3.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.12.3/src/libkdcraw-18.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Summary  : A C++ interface used to decode RAW picture
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0 LGPL-2.1
 Requires: libkdcraw-lib = %{version}-%{release}
@@ -30,6 +30,7 @@ Summary: dev components for the libkdcraw package.
 Group: Development
 Requires: libkdcraw-lib = %{version}-%{release}
 Provides: libkdcraw-devel = %{version}-%{release}
+Requires: libkdcraw = %{version}-%{release}
 
 %description dev
 dev components for the libkdcraw package.
@@ -60,16 +61,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552009989
+export SOURCE_DATE_EPOCH=1555353621
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552009989
+export SOURCE_DATE_EPOCH=1555353621
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdcraw
 cp COPYING %{buildroot}/usr/share/package-licenses/libkdcraw/COPYING
