@@ -5,14 +5,15 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : libkdcraw
-Version  : 20.12.3
-Release  : 28
-URL      : https://download.kde.org/stable/release-service/20.12.3/src/libkdcraw-20.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.12.3/src/libkdcraw-20.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.12.3/src/libkdcraw-20.12.3.tar.xz.sig
+Version  : 21.04.0
+Release  : 29
+URL      : https://download.kde.org/stable/release-service/21.04.0/src/libkdcraw-21.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.04.0/src/libkdcraw-21.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.04.0/src/libkdcraw-21.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-3-Clause GPL-2.0 LGPL-2.1
+License  : BSD-3-Clause GPL-2.0
+Requires: libkdcraw-data = %{version}-%{release}
 Requires: libkdcraw-lib = %{version}-%{release}
 Requires: libkdcraw-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
@@ -26,10 +27,19 @@ BuildRequires : pkgconfig(libraw_r)
 LibRaw C++ interface for KDE
 -- AUTHORS -----------------------------------------------------------
 
+%package data
+Summary: data components for the libkdcraw package.
+Group: Data
+
+%description data
+data components for the libkdcraw package.
+
+
 %package dev
 Summary: dev components for the libkdcraw package.
 Group: Development
 Requires: libkdcraw-lib = %{version}-%{release}
+Requires: libkdcraw-data = %{version}-%{release}
 Provides: libkdcraw-devel = %{version}-%{release}
 Requires: libkdcraw = %{version}-%{release}
 
@@ -40,6 +50,7 @@ dev components for the libkdcraw package.
 %package lib
 Summary: lib components for the libkdcraw package.
 Group: Libraries
+Requires: libkdcraw-data = %{version}-%{release}
 Requires: libkdcraw-license = %{version}-%{release}
 
 %description lib
@@ -55,15 +66,15 @@ license components for the libkdcraw package.
 
 
 %prep
-%setup -q -n libkdcraw-20.12.3
-cd %{_builddir}/libkdcraw-20.12.3
+%setup -q -n libkdcraw-21.04.0
+cd %{_builddir}/libkdcraw-21.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618656627
+export SOURCE_DATE_EPOCH=1619203425
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -79,18 +90,21 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618656627
+export SOURCE_DATE_EPOCH=1619203425
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdcraw
-cp %{_builddir}/libkdcraw-20.12.3/COPYING %{buildroot}/usr/share/package-licenses/libkdcraw/133efad5329acf364135c569ac01ec084c3d4647
-cp %{_builddir}/libkdcraw-20.12.3/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libkdcraw/ff3ed70db4739b3c6747c7f624fe2bad70802987
-cp %{_builddir}/libkdcraw-20.12.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/libkdcraw/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/libkdcraw-21.04.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/libkdcraw/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/libkdcraw-21.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/libkdcraw/3e8971c6c5f16674958913a94a36b1ea7a00ac46
 pushd clr-build
 %make_install
 popd
 
 %files
 %defattr(-,root,root,-)
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/qlogging-categories5/libkdcraw.categories
 
 %files dev
 %defattr(-,root,root,-)
@@ -117,6 +131,5 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libkdcraw/133efad5329acf364135c569ac01ec084c3d4647
-/usr/share/package-licenses/libkdcraw/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-/usr/share/package-licenses/libkdcraw/ff3ed70db4739b3c6747c7f624fe2bad70802987
+/usr/share/package-licenses/libkdcraw/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+/usr/share/package-licenses/libkdcraw/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
