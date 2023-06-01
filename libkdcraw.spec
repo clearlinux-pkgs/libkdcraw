@@ -7,7 +7,7 @@
 #
 Name     : libkdcraw
 Version  : 23.04.1
-Release  : 57
+Release  : 58
 URL      : https://download.kde.org/stable/release-service/23.04.1/src/libkdcraw-23.04.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/23.04.1/src/libkdcraw-23.04.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/23.04.1/src/libkdcraw-23.04.1.tar.xz.sig
@@ -78,7 +78,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684777734
+export SOURCE_DATE_EPOCH=1685640253
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -111,7 +111,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1684777734
+export SOURCE_DATE_EPOCH=1685640253
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdcraw
 cp %{_builddir}/libkdcraw-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/libkdcraw/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -133,7 +133,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKF5KDcraw.so
 /usr/include/KF5/KDCRAW/KDCRAW/DcrawInfoContainer
 /usr/include/KF5/KDCRAW/KDCRAW/KDcraw
 /usr/include/KF5/KDCRAW/KDCRAW/RawDecodingSettings
@@ -152,7 +151,6 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKF5KDcraw.so.5
 /V3/usr/lib64/libKF5KDcraw.so.5.0.0
 /usr/lib64/libKF5KDcraw.so.5
 /usr/lib64/libKF5KDcraw.so.5.0.0
