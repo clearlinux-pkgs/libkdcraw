@@ -7,7 +7,7 @@
 #
 Name     : libkdcraw
 Version  : 23.04.3
-Release  : 61
+Release  : 62
 URL      : https://download.kde.org/stable/release-service/23.04.3/src/libkdcraw-23.04.3.tar.xz
 Source0  : https://download.kde.org/stable/release-service/23.04.3/src/libkdcraw-23.04.3.tar.xz
 Source1  : https://download.kde.org/stable/release-service/23.04.3/src/libkdcraw-23.04.3.tar.xz.sig
